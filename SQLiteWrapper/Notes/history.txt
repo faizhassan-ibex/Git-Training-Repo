@@ -1,0 +1,48 @@
+24 January 2012
+================
+-Updated to sqlite 3.7.10
+-NOTE! There are code breaking changes in this release. 
+     I've renamed many constants to their counterpart in the SQLite documentation.
+
+-Functions added:
+	sqlite3_blob_reopen
+	sqlite3_db_filename
+	sqlite3_db_release_memory
+	sqlite3_stmt_busy
+	sqlite3_stmt_readonly
+	sqlite3_uri_boolean
+	sqlite3_uri_int64
+	sqlite3_uri_parameter
+	sqlite3_vtab_config
+	sqlite3_vtab_on_conflict
+	sqlite3_wal_checkpoint_v2
+	
+-Constant added:
+	Code breaking changes. See above.
+================================================================================================================================
+
+08 December 2010
+================
+-Updated to sqlite 3.7.4
+-Functions added:
+	sqlite3_blob_reopen
+	sqlite3_stmt_readonly
+-Constant added:
+	SQLITE_FCNTL_FILE_POINTER
+================================================================================================================================
+
+06 November 2010
+================
+-Updated to sqlite 3.7.3
+-Created "All constants.txt", "All functions.txt", "All objects.txt", "todo.txt"
+ It has been decided to not prefix the sqlite version number to these files as whatever
+ source code management system that is used will be keeping a record of the changes
+ These files will keep a history of the constants, functions and objects that exists
+ in SQLite.
+
+
+*02 September 2010
+===================
+-Added "All constants" and "All functions" text files for version 3.7.2 
+-Added "All objects" text files of version 3.6.23 and version 3.7.2.
+--These objects aren't implemented

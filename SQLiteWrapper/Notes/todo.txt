@@ -1,0 +1,13 @@
+These functions aren't implemented:
+	sqlite3_vsnprintf
+	sqlite3_mprintf
+	sqlite3_snprintf
+	sqlite3_vmprintf
+
+-From 3.7.x
+* sqlite3_vsnprintf
+
+-From 3.6.20
+* sqlite3_mprintf
+* sqlite3_snprintf
+* sqlite3_vmprintf
