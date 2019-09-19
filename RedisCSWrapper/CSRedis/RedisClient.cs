@@ -227,7 +227,8 @@ namespace CSRedis
         /// </summary>
         public void StartPipe()
         {
-            _connector.BeginPipe();
+            _connector.BeginPipe(50);
+			_connector.keepAlive();
         }
 
         /// <summary>
