@@ -210,12 +210,19 @@ namespace CSRedis
             // prevent any floating-point problems (mostly because of number formats in non en-US cultures).
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
+<<<<<<< HEAD
             _connector = new RedisConnector(endpoint, socket, asyncConcurrency, asyncBufferSize);
 			//Earlier Commit
             _transaction = new RedisTransaction(_connector,false);
             _subscription = new SubscriptionListener(_connector);
 			_subscription = new SubscriptionListenerAsync(_connector);
             _monitor = new MonitorListener(_connector);
+=======
+             //Latter Commit
+            _transaction = new RedisTransaction(_connector);
+            _subscription = new SubscriptionListener(_connector);
+            _monitor = new MonitorListenerExt(_connector);
+>>>>>>> fb-latter-commit
 
             _subscription.MessageReceived += OnSubscriptionReceived;
             _subscription.Changed += OnSubscriptionChanged;
@@ -288,8 +295,26 @@ namespace CSRedis
             _connector.Dispose();
         }
 
+<<<<<<< HEAD
         //Earlier Commit Method Removed
 		
+=======
+        void OnMonitorReceived(object sender, RedisMonitorEventArgs obj)
+        {
+            if (MonitorReceived != null)
+                MonitorReceived(this, obj);
+			
+			MonitorReceived(this, obj,true);
+        }
+
+        void OnSubscriptionReceived(object sender, RedisSubscriptionReceivedEventArgs args)
+        {
+            if (SubscriptionReceived != null)
+                SubscriptionReceived(this, args);
+			SubscriptionReceived(this);
+        }
+
+>>>>>>> fb-latter-commit
         void OnSubscriptionChanged(object sender, RedisSubscriptionChangedEventArgs args)
         {
             if (SubscriptionChanged != null)
