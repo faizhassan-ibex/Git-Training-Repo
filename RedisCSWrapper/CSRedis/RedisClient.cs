@@ -210,10 +210,10 @@ namespace CSRedis
             // prevent any floating-point problems (mostly because of number formats in non en-US cultures).
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
-            _connector = new RedisConnector(endpoint, socket, asyncConcurrency, asyncBufferSize);
+             //Latter Commit
             _transaction = new RedisTransaction(_connector);
             _subscription = new SubscriptionListener(_connector);
-            _monitor = new MonitorListener(_connector);
+            _monitor = new MonitorListenerExt(_connector);
 
             _subscription.MessageReceived += OnSubscriptionReceived;
             _subscription.Changed += OnSubscriptionChanged;
@@ -290,12 +290,15 @@ namespace CSRedis
         {
             if (MonitorReceived != null)
                 MonitorReceived(this, obj);
+			
+			MonitorReceived(this, obj,true);
         }
 
         void OnSubscriptionReceived(object sender, RedisSubscriptionReceivedEventArgs args)
         {
             if (SubscriptionReceived != null)
                 SubscriptionReceived(this, args);
+			SubscriptionReceived(this);
         }
 
         void OnSubscriptionChanged(object sender, RedisSubscriptionChangedEventArgs args)
