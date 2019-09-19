@@ -211,8 +211,10 @@ namespace CSRedis
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
             _connector = new RedisConnector(endpoint, socket, asyncConcurrency, asyncBufferSize);
-            _transaction = new RedisTransaction(_connector);
+			//Earlier Commit
+            _transaction = new RedisTransaction(_connector,false);
             _subscription = new SubscriptionListener(_connector);
+			_subscription = new SubscriptionListenerAsync(_connector);
             _monitor = new MonitorListener(_connector);
 
             _subscription.MessageReceived += OnSubscriptionReceived;
@@ -286,18 +288,8 @@ namespace CSRedis
             _connector.Dispose();
         }
 
-        void OnMonitorReceived(object sender, RedisMonitorEventArgs obj)
-        {
-            if (MonitorReceived != null)
-                MonitorReceived(this, obj);
-        }
-
-        void OnSubscriptionReceived(object sender, RedisSubscriptionReceivedEventArgs args)
-        {
-            if (SubscriptionReceived != null)
-                SubscriptionReceived(this, args);
-        }
-
+        //Earlier Commit Method Removed
+		
         void OnSubscriptionChanged(object sender, RedisSubscriptionChangedEventArgs args)
         {
             if (SubscriptionChanged != null)
